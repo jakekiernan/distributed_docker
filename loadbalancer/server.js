@@ -5,7 +5,7 @@ const request = require('request')
 
 const PORT = 8080;
 
-const nodeIPs = [2, 3];
+const nodeIPs = [1, 2, 3];
 
 const app = express();
 
@@ -40,4 +40,4 @@ app.post('/', (req, res) => {
 });
 
 app.listen(PORT);
-console.log(`Running on ${PORT}`);
+console.log(`Loadbalancer is running`);

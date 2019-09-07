@@ -22,4 +22,4 @@ app.post('/', (req, res) => {
 });
 
 app.listen(PORT);
-console.log(`Node 2 running on ${PORT}`);
+console.log(`Node 2 running`);
