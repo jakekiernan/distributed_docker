@@ -7,4 +7,4 @@ To start: run `docker-compose up`.
 
 The load balancer will port on 8080.
 
-Example request: curl -d '{"todo":"todo value"}' -H "Content-Type: application/json" -X POST localhost:8080
+Example request: `curl -d '{"todo":"todo value"}' -H "Content-Type: application/json" -X POST localhost:8080`
