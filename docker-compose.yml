@@ -20,5 +20,3 @@ services:
     ports:
       - "8083:8080"
     container_name: node_3  
-    
-
