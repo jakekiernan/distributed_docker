@@ -11,11 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/', (req, res) => {
-  console.log('POST Recieved on Node 3');
-
-  const timeout = Math.random() * 5;
+  console.log('Request recieved on node 3');
+  const timeout = Math.random() * 3;
 
   const delayedResponse = () => {
+    console.log('Responding to load balancer');
     res.send({ node: 'three', timeout: timeout })
   };
 

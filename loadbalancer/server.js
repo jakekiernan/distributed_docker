@@ -3,13 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request')
 
-const PORT = 8080;
-
-const nodeIPs = [1, 2, 3];
-
 const app = express();
-
-const nextIP = () => nodeIPs.push(nodeIPs.shift());
+const PORT = 8080;
+const nodeIPs = [3, 1, 2];
+const nextIP = arr => arr.push(arr.shift());
+const getIP = arr => {
+  nextIP(arr);
+  return arr[0];
+}
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -20,10 +21,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  let node = nodeIPs[0]-1
-  console.log('POST req recieved by load balancer\nSending request to node '+node+'\n');
+  const node = getIP(nodeIPs)
+  console.log(`Request recieved by load balancer\nSending request to node ${node}`);
 
-  request.post(`http://node_${nodeIPs[0]}:8080`, {
+  request.post(`http://node_${node}:8080`, {
     json: {
       todo: 'first todo'
     }
@@ -32,12 +33,12 @@ app.post('/', (req, res) => {
       res.send('Error'+error);
     };
     if (resp) {
+      console.log(`Responding to host`);
       res.send('Your request was proccessed by node '+body.node+'\nWith a delay of '+body.timeout+' seconds\n');
     };
   });
 
-  nextIP();
 });
 
 app.listen(PORT);
-console.log(`Loadbalancer is running`);
+console.log(`Load balancer is running`);
