@@ -5,7 +5,7 @@ const request = require('request')
 
 const PORT = 8080;
 
-const nodeIPs = [3, 4];
+const nodeIPs = [2, 3];
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.post('/', (req, res) => {
   let node = nodeIPs[0]-1
   console.log('POST req recieved by load balancer\nSending request to node '+node+'\n');
 
-  request.post('http://172.17.0.'+nodeIPs[0]+':8080', {
+  request.post(`http://node_${nodeIPs[0]}:8080`, {
     json: {
       todo: 'first todo'
     }
