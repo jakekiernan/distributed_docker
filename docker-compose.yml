@@ -1,22 +1,22 @@
 version: '3'
 services:
   load_balancer:
-    build: ./loadbalancer
+    build: ./load_balancer
     ports:
       - "8080:8080"
-    container_name: loadbalancer
+    container_name: load_balancer
   worker_one:
-    build: ./node_1
+    build: ./worker_1
     ports:
       - "8081:8080"
-    container_name: node_1
+    container_name: worker_1
   worker_two:
-    build: ./node_2
+    build: ./worker_2
     ports:
       - "8082:8080"
-    container_name: node_2 
+    container_name: worker_2 
   worker_three:
-    build: ./node_3
+    build: ./worker_3
     ports:
       - "8083:8080"
-    container_name: node_3  
+    container_name: worker_3  
